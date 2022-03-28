@@ -7,38 +7,172 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.Rectangle-2-Copy {  
+  height: 114px;
+  margin: 0 0 70px;
+  padding: 44px 1082px 0px 150px;
+  box-shadow: 0 1px 4px 0 rgba(0, 21, 41, 0.12);
+  background-image: linear-gradient(to bottom, #ececec -32%, #fff 124%);
 }
 
-.navigation {
-  height: 110px;
-  border-bottom: 1px solid;
+.HACKER-NEWS {
+  width: 208px;
+  height: 28px;
+  object-fit: contain;
+  font-family: Baskerville;
+  font-size: 28px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  color: #3b3b3b;
 }
 
-.nav-container {
-  max-width: 1000px;
-  margin: 0 auto;
+.RectangleContent {
+  display: flex;
+  justify-content: center;
 }
 
-.brand {
-     position: absolute;
-     padding-left: 20px;
-     float: left;
-     line-height: 55px;
-     text-transform: uppercase;
-     font-size: 1.4em;
+.Rectangle {
+  width: 98px;
+  height: 31px;
+  padding: 3px 39px 0 40px;
+  border-radius: 2px;  
+  border: solid 1px #d6d6d6;
+  /* border: solid 1px #1797ff;   */
 }
 
-.brand h3, .brand h3:visited {
-     color: black;
-     text-decoration: none;
+.My-faves {
+  width: 65px;
+  height: 28px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.75;
+  letter-spacing: normal;
+  text-align: center;
+  color: #606060;
 }
 
+.Rectangle-26-Copy-23 {
+  width: 240px;
+  height: 32px;
+  margin: 63px 114px 1px 4.9%;
+  padding: 5px 12px 5px 12px;
+  border-radius: 4px;
+  border: solid 1px #2e2e2e;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
 
+.Text {
+  width: 183px;
+  height: 22px;
+  margin: 0 19px 0 0;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.57;
+  letter-spacing: normal;
+  color: #343434;
+}
+
+.Mask {
+  width: 10px;
+  height: 7px;
+  background-color: #2e2e2e;
+}
+
+.Reactangle-Card-Content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.Reactangle-Card-Content > div {
+  width: 43%;
+  min-width: fit-content;
+}
+
+.Rectangle-Card {  
+  height: 90px;
+  margin: 38px 10px 30px 40px;
+  padding: 0 0 0 26px;
+  opacity: 0.8;
+  border-radius: 6px;
+  border: solid 1px #979797;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+
+img.iconmonstr-time-2 {
+  width: 16px;
+  height: 16px;
+  margin: 0 8px 6px 0;
+  object-fit: contain;
+}
+
+.-hours-ago-by-autho {
+  align-items: center;
+  display: inline-flex;
+  margin: 16px 325px 7px 0px;
+  font-family: Roboto;
+  font-size: 11px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #767676;
+}
+
+.Yes-React-is-taking {
+  width: 440px;
+  height: 40px;
+  margin: 6px 16px 14px 0;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: 0.25px;
+  color: #6b6b6b;
+}
+
+.Rectangle-Right {  
+    width: auto;
+    margin: 0 0 0 16px;
+    padding: 35px 22px 33px;
+    /* opacity: 0.06; */
+    border-radius: 6px;
+    border: solid 1px #eeeeee;
+    background-color: #eeeeee;  
+    text-align: center;
+}
+
+.Path {
+  width: 24px;
+  height: 22px;
+  background-color: #dd0031;
+}
+
+img.iconmonstr-favorite-3 {
+  width: 24px;
+  height: 22px;
+  object-fit: contain;
+}
 
 .App {
   text-align: center;
   background-color: aqua;
 }
+
