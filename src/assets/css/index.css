@@ -43,6 +43,20 @@ body {
   /* border: solid 1px #1797ff;   */
 }
 
+.All {
+  width: 19px;
+  height: 28px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.75;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--azure);
+}
+
 .My-faves {
   width: 65px;
   height: 28px;
@@ -69,7 +83,26 @@ body {
   align-items: center;
 }
 
-.Text {
+.Option {
+  width: 49px;
+  height: 22px;
+  margin: 0 0 65px 13px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.57;
+  letter-spacing: normal;
+  color: #343434;
+}
+
+img.Image-138 {
+  margin: 1px 13px -7px 0;
+  object-fit: contain;
+}
+
+/* .Text {
   width: 183px;
   height: 22px;
   margin: 0 19px 0 0;
@@ -81,12 +114,67 @@ body {
   line-height: 1.57;
   letter-spacing: normal;
   color: #343434;
+} */
+
+.dropbtn {
+  background-color: #fff;
+  color: black;
+  /* padding: 16px;
+  font-size: 16px; */
+  border: none;
+  cursor: pointer;
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 240px;
+  box-shadow: 0px 8px 16px 
+      0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content span {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content span:hover {
+  background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* .dropdown .dropdown-content {
+  display: block;
+}
+
+.dropdown .dropdown-content {
+  display: block;
+} */
+
+/*
 .Mask {
   width: 10px;
   height: 7px;
   background-color: #2e2e2e;
+} */
+
+.Rectangle-Row {
+  width: 14px;
+  height: 14px;
+  margin: 4px 0 4px 19px;
+  padding: 4px 2px 3px;
 }
 
 .Reactangle-Card-Content {
