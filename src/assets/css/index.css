@@ -253,6 +253,7 @@ img.iconmonstr-time-2 {
     border: solid 1px #eeeeee;
     background-color: #eeeeee;  
     text-align: center;
+    cursor: pointer;
 }
 
 .Path {
