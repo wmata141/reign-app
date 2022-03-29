@@ -163,6 +163,14 @@ img.Image-138 {
   display: block;
 } */
 
+.footer {
+  display: flex;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  justify-content: center;
+}
+
 /*
 .Mask {
   width: 10px;
@@ -191,7 +199,7 @@ img.Image-138 {
 
 .Rectangle-Card {  
   height: 90px;
-  margin: 38px 10px 30px 40px;
+  margin: 38px 10px 0px 40px;
   padding: 0 0 0 26px;
   opacity: 0.8;
   border-radius: 6px;
