@@ -102,25 +102,9 @@ img.Image-138 {
   object-fit: contain;
 }
 
-/* .Text {
-  width: 183px;
-  height: 22px;
-  margin: 0 19px 0 0;
-  font-family: Roboto;
-  font-size: 14px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.57;
-  letter-spacing: normal;
-  color: #343434;
-} */
-
 .dropbtn {
   background-color: #fff;
   color: black;
-  /* padding: 16px;
-  font-size: 16px; */
   border: none;
   cursor: pointer;
 }
@@ -134,10 +118,12 @@ img.Image-138 {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 240px;
+  min-width: 264px;
   box-shadow: 0px 8px 16px 
       0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  right: 0px;
+  top: 43px;
 }
 
 .dropdown-content span {
@@ -145,6 +131,7 @@ img.Image-138 {
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  cursor: pointer;
 }
 
 .dropdown-content span:hover {
@@ -154,30 +141,6 @@ img.Image-138 {
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
-/* .dropdown .dropdown-content {
-  display: block;
-}
-
-.dropdown .dropdown-content {
-  display: block;
-} */
-
-.footer {
-  display: flex;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  justify-content: center;
-  background-color: white;
-}
-
-/*
-.Mask {
-  width: 10px;
-  height: 7px;
-  background-color: #2e2e2e;
-} */
 
 .Rectangle-Row {
   width: 14px;
@@ -191,6 +154,7 @@ img.Image-138 {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
+  margin-bottom: 60px;
 }
 
 .Reactangle-Card-Content > div {
@@ -254,7 +218,6 @@ img.iconmonstr-time-2 {
     width: auto;
     margin: 0 0 0 16px;
     padding: 35px 22px 33px;
-    /* opacity: 0.06; */
     border-radius: 6px;
     border: solid 1px #eeeeee;
     background-color: #eeeeee;  
@@ -273,8 +236,12 @@ img.iconmonstr-favorite-3 {
   object-fit: contain;
 }
 
-.App {
-  text-align: center;
-  background-color: aqua;
+.footer {
+  display: flex;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  justify-content: center;
+  background-color: white;
 }
 
