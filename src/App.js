@@ -24,7 +24,7 @@ function App() {
       const arrayAll = []
       hits.forEach(element => {
         const resultado = faves.find(item => item.objectID === element.objectID);
-        console.log("resultado ==>", resultado);
+
         if (resultado) {
           arrayAll.push(resultado)
         } else {
@@ -32,20 +32,23 @@ function App() {
         }
       });
 
-      console.log("arrayAll ==>", arrayAll);
-
       setPosts(arrayAll)
       setLoading(false)
     }
 
     fetchPost()
-
-    console.log("faves ==>", faves);
   }, [framework, faves])
 
   useEffect(() => {
+    const frameworkJson = JSON.parse(localStorage.getItem('framework'))
+    if (frameworkJson) setFramework(frameworkJson)    
 
-  }, [posts])
+    const favesJson = JSON.parse(localStorage.getItem('faves'))
+    if (favesJson) setFaves(favesJson)
+    
+  }, [])
+
+
 
   const now = moment();
 
@@ -56,6 +59,8 @@ function App() {
   if (!listHandle) {
     currentPosts = faves.slice(indexOfFirstPost, indexOfLastPost)
   }
+
+  console.log("currentPosts ==>", currentPosts);
 
   const pageNumbers = []
 
@@ -73,14 +78,15 @@ function App() {
     const arrayAuxPosts = posts
     const arrayAuxFaves = faves
     if (item.faves) {
-      arrayAuxPosts.map(element => {
+      arrayAuxPosts.forEach(element => {
         if (element.objectID === item.objectID) {
           element.faves = false
         }
       });
       setPosts(arrayAuxPosts)
 
-      const result = arrayAuxFaves.filter(f => f.objectID != item.objectID);
+      const result = arrayAuxFaves.filter(f => f.objectID !== item.objectID);
+      localStorage.setItem('faves', JSON.stringify(result))
       setFaves(result)
     } else {
       item.faves = true
@@ -88,7 +94,7 @@ function App() {
 
       let hash = {};
       const result = arrayAuxFaves.filter(o => hash[o.objectID] ? false : hash[o.objectID] = true);
-
+      localStorage.setItem('faves', JSON.stringify(result))
       setFaves(result)
     }
 
@@ -97,6 +103,14 @@ function App() {
 
   }
 
+  const handleFramework = (item) => {
+    localStorage.setItem('framework', JSON.stringify(item))
+    setFramework(item)
+  }
+
+  const clickOpen = (url) => {
+    window.open(url);
+  }
 
   return (
     <div className="Front-End-Test---Home-view">
@@ -138,7 +152,7 @@ function App() {
                 {
                   frameworkList.map((item, i) => {
                     return (
-                      <span onClick={() => setFramework(item)} className="Text">
+                      <span key={i} onClick={() => handleFramework(item)} className="Text">
                         <img src={item.img} alt="Angular" className="Image-138" />
                         {item.name[0].toUpperCase() + item.name.slice(1)}
                       </span>
@@ -150,18 +164,17 @@ function App() {
 
             <div className="Reactangle-Card-Content">
               {
-
                 currentPosts.map((post, i) => {
                   const duration = moment.duration(now.diff(post.created_at));
-                  let agoByAuthor = `${duration._data.hours} hours ago by author`
+                  let agoByAuthor = `${duration._data.hours} hours ago by ${post.author}`
 
                   if (duration._data.hours < 1) {
-                    agoByAuthor = `${duration._data.minutes} minutes ago by author`
+                    agoByAuthor = `${duration._data.minutes} minutes ago by  ${post.author}`
                   }
 
                   return (
                     <div className="Rectangle-Card" key={i}>
-                      <div style={{ display: 'grid' }}>
+                      <div style={{ display: 'grid' }} onClick={() => clickOpen(post.story_url)}>
                         <span className="-hours-ago-by-autho">
                           <img src={Timer} alt="timer" className="iconmonstr-time-2" />
                           {agoByAuthor}
@@ -190,23 +203,25 @@ function App() {
         )
       }
 
-      <nav className="footer">
-        <ul className='pagination'>
-          <a onClick={() => setCurrentPage(1)} href="!#" className="Rectangle-3-Copy-33">
-            {'<'}
-          </a>
-          {pageNumbers.map(number => (
-            // <li key={number} className="page-item">
-            <a key={number} onClick={() => setCurrentPage(number)} href="!#" className={number === currentPage ? "Rectangle-3-Copy-33-active" : "Rectangle-3-Copy-33"}>
-              {number}
+      <div>
+        <nav className="footer">
+          <ul className='pagination'>
+            <a onClick={() => setCurrentPage(1)} href="!#" className="Rectangle-3-Copy-33">
+              {'<'}
             </a>
-            // </li>
-          ))}
-          <a onClick={() => setCurrentPage(pageNumbers.length)} href="!#" className="Rectangle-3-Copy-33">
-            {'>'}
-          </a>
-        </ul>
-      </nav>
+            {pageNumbers.map(number => (
+              // <li key={number} className="page-item">
+              <a key={number} onClick={() => setCurrentPage(number)} href="!#" className={number === currentPage ? "Rectangle-3-Copy-33-active" : "Rectangle-3-Copy-33"}>
+                {number}
+              </a>
+              // </li>
+            ))}
+            <a onClick={() => setCurrentPage(pageNumbers.length)} href="!#" className="Rectangle-3-Copy-33">
+              {'>'}
+            </a>
+          </ul>
+        </nav>
+      </div>
 
     </div>
   );
