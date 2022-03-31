@@ -93,6 +93,15 @@ function App() {
       localStorage.setItem('faves', JSON.stringify(result))
       setFaves(result)
     } else {
+      arrayAuxPosts.forEach(element => {
+        if (element.objectID === item.objectID) {
+          console.log("element.faves ==>", element.faves);
+          element.faves = true
+        }
+      });
+      localStorage.setItem('all', JSON.stringify(arrayAuxPosts))
+      setPosts(arrayAuxPosts)
+
       item.faves = true
       arrayAuxFaves.push(item)
 
