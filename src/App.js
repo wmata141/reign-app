@@ -15,7 +15,7 @@ function App() {
   const [nbPages, setNbPages] = useState([])
 
   useEffect(() => {
-    // GET INFORMATION FROM THE API 
+    // GET INFORMATION FROM THE API     
     const fetchPost = async () => {
       const data = await fetch(`https://hn.algolia.com/api/v1/search_by_date?query=${framework.name}&page=${currentPage}`)
       const { hits, nbPages } = await data.json()
@@ -35,7 +35,8 @@ function App() {
       }
       setNbPages(pageNumbers)
 
-      const allJson = JSON.parse(localStorage.getItem('all'))
+      const allJson = JSON.parse(localStorage.getItem(`all ${framework}`))
+      
       if (allJson) {
         setPosts(allJson)
       } else {
@@ -81,12 +82,11 @@ function App() {
 
     if (item.faves) {
       arrayAuxPosts.forEach(element => {
-        if (element.objectID === item.objectID) {
-          console.log("element.faves ==>", element.faves);
+        if (element.objectID === item.objectID) {          
           element.faves = false
         }
       });
-      localStorage.setItem('all', JSON.stringify(arrayAuxPosts))
+      localStorage.setItem(`all ${framework}`, JSON.stringify(arrayAuxPosts))
       setPosts(arrayAuxPosts)
 
       const result = arrayAuxFaves.filter(f => f.objectID !== item.objectID);
@@ -94,12 +94,11 @@ function App() {
       setFaves(result)
     } else {
       arrayAuxPosts.forEach(element => {
-        if (element.objectID === item.objectID) {
-          console.log("element.faves ==>", element.faves);
+        if (element.objectID === item.objectID) {          
           element.faves = true
         }
       });
-      localStorage.setItem('all', JSON.stringify(arrayAuxPosts))
+      localStorage.setItem(`all ${framework}`, JSON.stringify(arrayAuxPosts))
       setPosts(arrayAuxPosts)
 
       item.faves = true
@@ -118,6 +117,7 @@ function App() {
     setFramework(item)
   }
 
+  // localStorage.clear()
   return (
     <div className="Front-End-Test---Home-view">
       <div className="Rectangle-2-Copy">
