@@ -35,7 +35,7 @@ function App() {
       }
       setNbPages(pageNumbers)
 
-      const allJson = JSON.parse(localStorage.getItem(`all ${framework}`))
+      const allJson = JSON.parse(localStorage.getItem(`all ${framework.name}`))
       
       if (allJson) {
         setPosts(allJson)
@@ -86,7 +86,7 @@ function App() {
           element.faves = false
         }
       });
-      localStorage.setItem(`all ${framework}`, JSON.stringify(arrayAuxPosts))
+      localStorage.setItem(`all ${framework.name}`, JSON.stringify(arrayAuxPosts))
       setPosts(arrayAuxPosts)
 
       const result = arrayAuxFaves.filter(f => f.objectID !== item.objectID);
@@ -98,7 +98,7 @@ function App() {
           element.faves = true
         }
       });
-      localStorage.setItem(`all ${framework}`, JSON.stringify(arrayAuxPosts))
+      localStorage.setItem(`all ${framework.name}`, JSON.stringify(arrayAuxPosts))
       setPosts(arrayAuxPosts)
 
       item.faves = true
