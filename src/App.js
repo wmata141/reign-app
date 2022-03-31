@@ -15,9 +15,50 @@ function App() {
   const [nbPages, setNbPages] = useState([])
 
   useEffect(() => {
+    // GET INFORMATION FROM THE API 
+    const fetchPost = async () => {
+      const data = await fetch(`https://hn.algolia.com/api/v1/search_by_date?query=${framework.name}&page=${currentPage}`)
+      const { hits, nbPages } = await data.json()
+
+      const pageNumbers = []
+      let initPage = 0
+      if (currentPage - 3 <= 0) {
+        initPage = 0
+      } else {
+        initPage = currentPage - 3
+      }
+
+      for (let i = initPage; i <= nbPages - 1; i++) {
+        if (i <= currentPage + 3 || i <= currentPage - 3) {
+          pageNumbers.push(i)
+        }
+      }
+      setNbPages(pageNumbers)
+
+      const allJson = JSON.parse(localStorage.getItem('all'))
+      if (allJson) {
+        setFaves(allJson)
+      } else {
+        const arrayAll = []
+
+        hits.forEach(element => {
+          const resultado = faves.find(item => item.objectID === element.objectID);
+
+          if (resultado) {
+            arrayAll.push(resultado)
+          } else {
+            arrayAll.push(element)
+          }
+        });
+
+        setPosts(arrayAll)
+      }
+
+      setLoading(false)
+      // setTotalPages(nbPages - 1)
+    }
+
     fetchPost()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    // localStorage.clear();
   }, [framework, faves, currentPage])
 
   useEffect(() => {
@@ -31,49 +72,6 @@ function App() {
   let currentPosts = posts
   if (!listHandle) {
     currentPosts = faves
-  }
-
-  // GET INFORMATION FROM THE API 
-  const fetchPost = async () => {
-    const data = await fetch(`https://hn.algolia.com/api/v1/search_by_date?query=${framework.name}&page=${currentPage}`)
-    const { hits, nbPages } = await data.json()
-
-    const pageNumbers = []
-    let initPage = 0
-    if (currentPage - 3 <= 0) {
-      initPage = 0
-    } else {
-      initPage = currentPage - 3
-    }
-
-    for (let i = initPage; i <= nbPages - 1; i++) {
-      if (i <= currentPage + 3 || i <= currentPage - 3) {
-        pageNumbers.push(i)
-      }
-    }
-    setNbPages(pageNumbers)
-
-    const allJson = JSON.parse(localStorage.getItem('all'))
-    if (allJson) {
-      setFaves(allJson)
-    } else {
-      const arrayAll = []
-      
-      hits.forEach(element => {
-        const resultado = faves.find(item => item.objectID === element.objectID);
-
-        if (resultado) {
-          arrayAll.push(resultado)
-        } else {
-          arrayAll.push(element)
-        }
-      });
-
-      setPosts(arrayAll)
-    }    
-
-    setLoading(false)
-    // setTotalPages(nbPages - 1)
   }
 
   // FAVORITES CARDS AND ALL CARDS
@@ -109,7 +107,7 @@ function App() {
   const handleFramework = (item) => {
     localStorage.setItem('framework', JSON.stringify(item))
     setFramework(item)
-  } 
+  }
 
   return (
     <div className="Front-End-Test---Home-view">
