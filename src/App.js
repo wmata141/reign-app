@@ -17,6 +17,7 @@ function App() {
   useEffect(() => {
     fetchPost()
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // localStorage.clear();
   }, [framework, faves, currentPage])
 
   useEffect(() => {
@@ -52,18 +53,25 @@ function App() {
     }
     setNbPages(pageNumbers)
 
-    const arrayAll = []
-    hits.forEach(element => {
-      const resultado = faves.find(item => item.objectID === element.objectID);
+    const allJson = JSON.parse(localStorage.getItem('all'))
+    if (allJson) {
+      setFaves(allJson)
+    } else {
+      const arrayAll = []
+      
+      hits.forEach(element => {
+        const resultado = faves.find(item => item.objectID === element.objectID);
 
-      if (resultado) {
-        arrayAll.push(resultado)
-      } else {
-        arrayAll.push(element)
-      }
-    });
+        if (resultado) {
+          arrayAll.push(resultado)
+        } else {
+          arrayAll.push(element)
+        }
+      });
 
-    setPosts(arrayAll)
+      setPosts(arrayAll)
+    }    
+
     setLoading(false)
     // setTotalPages(nbPages - 1)
   }
@@ -76,9 +84,11 @@ function App() {
     if (item.faves) {
       arrayAuxPosts.forEach(element => {
         if (element.objectID === item.objectID) {
+          console.log("element.faves ==>", element.faves);
           element.faves = false
         }
       });
+      localStorage.setItem('all', JSON.stringify(arrayAuxPosts))
       setPosts(arrayAuxPosts)
 
       const result = arrayAuxFaves.filter(f => f.objectID !== item.objectID);
@@ -99,7 +109,7 @@ function App() {
   const handleFramework = (item) => {
     localStorage.setItem('framework', JSON.stringify(item))
     setFramework(item)
-  }
+  } 
 
   return (
     <div className="Front-End-Test---Home-view">
@@ -125,7 +135,7 @@ function App() {
           )
         }
       </div>
-      
+
       <Footer nbPages={nbPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   );

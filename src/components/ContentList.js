@@ -9,47 +9,47 @@ const clickOpen = (url) => {
 }
 
 const ContentList = ({ currentPosts, handleFaves }) => {
-    const now = moment();
-    
-    return (
-        <div className="Reactangle-Card-Content">
-                {
-                  currentPosts.map((post, i) => {
-                    const duration = moment.duration(now.diff(post.created_at));
-                    let agoByAuthor = `${duration._data.hours} hours ago by ${post.author}`
+  const now = moment();
 
-                    if (duration._data.hours < 1) {
-                      agoByAuthor = `${duration._data.minutes} minutes ago by  ${post.author}`
-                    }
+  return (
+    <div className="Reactangle-Card-Content">
+      {
+        currentPosts.map((post, i) => {
+          const duration = moment.duration(now.diff(post.created_at));
+          let agoByAuthor = `${duration._data.hours} hours ago by ${post.author}`
 
-                    return (
-                      <div className="Rectangle-Card" key={i}>
-                        <div style={{ display: 'grid' }} onClick={() => clickOpen(post.story_url)}>
-                          <span className="-hours-ago-by-autho">
-                            <img src={Timer} alt="timer" className="iconmonstr-time-2" />
-                            {agoByAuthor}
-                          </span>
+          if (duration._data.hours < 1) {
+            agoByAuthor = `${duration._data.minutes} minutes ago by  ${post.author}`
+          }
 
-                          <span className="Yes-React-is-taking">
-                            {post.story_title}
-                          </span>
-                        </div>
+          return (
+            <div className="Rectangle-Card" key={i}>
+              <div style={{ display: 'grid' }} onClick={() => clickOpen(post.story_url)}>
+                <span className="-hours-ago-by-autho">
+                  <img src={Timer} alt="timer" className="iconmonstr-time-2" />
+                  {agoByAuthor}
+                </span>
 
-                        <div className="Rectangle-Right" onClick={() => handleFaves(post)}>
-                          {
-                            post.faves ? (
-                              <img src={CorazonLleno} alt="heart" className="iconmonstr-favorite-3" />
-                            ) : (
-                              <img src={CorazonVacio} alt="heart" className="iconmonstr-favorite-3" />
-                            )
-                          }
-
-                        </div>
-                      </div>
-                    )
-                  })}
+                <span className="Yes-React-is-taking">
+                  {post.story_title}
+                </span>
               </div>
-    )
+
+              <div className="Rectangle-Right" onClick={() => handleFaves(post)}>
+                {
+                  post.faves ? (
+                    <img src={CorazonLleno} alt="heart" className="iconmonstr-favorite-3" />
+                  ) : (
+                    <img src={CorazonVacio} alt="heart" className="iconmonstr-favorite-3" />
+                  )
+                }
+
+              </div>
+            </div>
+          )
+        })}
+    </div>
+  )
 }
 
 export default ContentList
