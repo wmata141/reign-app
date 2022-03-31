@@ -37,7 +37,7 @@ function App() {
 
       const allJson = JSON.parse(localStorage.getItem('all'))
       if (allJson) {
-        setFaves(allJson)
+        setPosts(allJson)
       } else {
         const arrayAll = []
 
