@@ -24,7 +24,7 @@ function App() {
       } else {
         data = await fetch(`https://hn.algolia.com/api/v1/search_by_date?query=${framework.name}&page=${currentPage}`)
       }
-      
+
       const { hits, nbPages } = await data.json()
 
       const pageNumbers = []
@@ -43,7 +43,7 @@ function App() {
       setNbPages(pageNumbers)
 
       const allJson = JSON.parse(localStorage.getItem(`all ${framework.name}`))
-      
+
       if (allJson) {
         setPosts(allJson)
       } else {
@@ -79,7 +79,7 @@ function App() {
     } else {
       setFaves([])
     }
-// eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   let currentPosts = posts
@@ -94,7 +94,7 @@ function App() {
 
     if (item.faves) {
       arrayAuxPosts.forEach(element => {
-        if (element.objectID === item.objectID) {          
+        if (element.objectID === item.objectID) {
           element.faves = false
         }
       });
@@ -106,7 +106,7 @@ function App() {
       setFaves(result)
     } else {
       arrayAuxPosts.forEach(element => {
-        if (element.objectID === item.objectID) {          
+        if (element.objectID === item.objectID) {
           element.faves = true
         }
       });
