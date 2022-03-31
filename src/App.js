@@ -79,7 +79,7 @@ function App() {
     } else {
       setFaves([])
     }
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   let currentPosts = posts
