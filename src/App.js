@@ -50,10 +50,10 @@ function App() {
         const arrayAll = []
 
         hits.forEach(element => {
-          const resultado = faves.find(item => item.objectID === element.objectID);
+          const result = faves.find(item => item.objectID === element.objectID);
 
-          if (resultado) {
-            arrayAll.push(resultado)
+          if (result) {
+            arrayAll.push(result)
           } else {
             arrayAll.push(element)
           }
