@@ -16,6 +16,7 @@ function App() {
 
   useEffect(() => {
     fetchPost()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [framework, faves, currentPage])
 
   useEffect(() => {
@@ -24,7 +25,6 @@ function App() {
 
     const favesJson = JSON.parse(localStorage.getItem('faves'))
     if (favesJson) setFaves(favesJson)
-
   }, [])
 
   let currentPosts = posts
