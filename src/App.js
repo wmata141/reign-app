@@ -17,7 +17,14 @@ function App() {
   useEffect(() => {
     // GET INFORMATION FROM THE API     
     const fetchPost = async () => {
-      const data = await fetch(`https://hn.algolia.com/api/v1/search_by_date?query=${framework.name}&page=${currentPage}`)
+      const frameworkJson = JSON.parse(localStorage.getItem('framework'))
+      let data
+      if (frameworkJson) {
+        data = await fetch(`https://hn.algolia.com/api/v1/search_by_date?query=${frameworkJson.name}&page=${currentPage}`)
+      } else {
+        data = await fetch(`https://hn.algolia.com/api/v1/search_by_date?query=${framework.name}&page=${currentPage}`)
+      }
+      
       const { hits, nbPages } = await data.json()
 
       const pageNumbers = []
