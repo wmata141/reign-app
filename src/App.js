@@ -73,8 +73,13 @@ function App() {
     const frameworkJson = JSON.parse(localStorage.getItem('framework'))
     if (frameworkJson) setFramework(frameworkJson)
 
-    const favesJson = JSON.parse(localStorage.getItem('faves'))
-    if (favesJson) setFaves(favesJson)
+    const favesJson = JSON.parse(localStorage.getItem(`faves ${framework.name}`))
+    if (favesJson) {
+      setFaves(favesJson)
+    } else {
+      setFaves([])
+    }
+
   }, [])
 
   let currentPosts = posts
@@ -97,7 +102,7 @@ function App() {
       setPosts(arrayAuxPosts)
 
       const result = arrayAuxFaves.filter(f => f.objectID !== item.objectID);
-      localStorage.setItem('faves', JSON.stringify(result))
+      localStorage.setItem(`faves ${framework.name}`, JSON.stringify(result))
       setFaves(result)
     } else {
       arrayAuxPosts.forEach(element => {
@@ -113,7 +118,7 @@ function App() {
 
       let hash = {};
       const result = arrayAuxFaves.filter(o => hash[o.objectID] ? false : hash[o.objectID] = true);
-      localStorage.setItem('faves', JSON.stringify(result))
+      localStorage.setItem(`faves ${framework.name}`, JSON.stringify(result))
       setFaves(result)
     }
   }
@@ -122,6 +127,23 @@ function App() {
   const handleFramework = (item) => {
     localStorage.setItem('framework', JSON.stringify(item))
     setFramework(item)
+
+    const favesJson = JSON.parse(localStorage.getItem(`faves ${item.name}`))
+    if (favesJson) {
+      setFaves(favesJson)
+    } else {
+      setFaves([])
+    }
+  }
+
+  const setListHandleFunction = (flag) => {
+    setListHandle(flag)
+    const favesJson = JSON.parse(localStorage.getItem(`faves ${framework.name}`))
+    if (favesJson) {
+      setFaves(favesJson)
+    } else {
+      setFaves([])
+    }
   }
 
   // localStorage.clear()
@@ -133,7 +155,7 @@ function App() {
         </span>
       </div>
 
-      <SelectList listHandle={listHandle} setListHandle={setListHandle} />
+      <SelectList listHandle={listHandle} setListHandleFunction={setListHandleFunction} />
 
       <div>
         {

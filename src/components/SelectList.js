@@ -1,13 +1,13 @@
-const SelectList = ({ listHandle, setListHandle }) => {
+const SelectList = ({ listHandle, setListHandleFunction }) => {
     return (
         <div className="RectangleContent">
-            <div className="Rectangle" onClick={() => setListHandle(true)} style={listHandle ? { border: 'solid 1px #1797ff' } : {}}>
+            <div className="Rectangle" onClick={() => setListHandleFunction(true)} style={listHandle ? { border: 'solid 1px #1797ff' } : {}}>
                 <span className="All" >
                     All
                 </span>
             </div>
 
-            <div className="Rectangle" onClick={() => setListHandle(false)} style={listHandle ? {} : { border: 'solid 1px #1797ff' }}>
+            <div className="Rectangle" onClick={() => setListHandleFunction(false)} style={listHandle ? {} : { border: 'solid 1px #1797ff' }}>
                 <span className="My-faves">
                     My faves
                 </span>
