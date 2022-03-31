@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import SelectList from './components/SelectList'
-import Footer from './components/Footer'
 import SelectFramework from './components/SelectFramework'
 import ContentList from './components/ContentList'
+import Footer from './components/Footer'
 
 function App() {
   const [framework, setFramework] = useState({ img: null, name: 'Select your News:' });
@@ -32,6 +32,7 @@ function App() {
     currentPosts = faves
   }
 
+  // GET INFORMATION FROM THE API 
   const fetchPost = async () => {
     const data = await fetch(`https://hn.algolia.com/api/v1/search_by_date?query=${framework.name}&page=${currentPage}`)
     const { hits, nbPages } = await data.json()
@@ -45,7 +46,7 @@ function App() {
     }
 
     for (let i = initPage; i <= nbPages - 1; i++) {
-      if (i <= currentPage + 3 || i <= currentPage - 3) {        
+      if (i <= currentPage + 3 || i <= currentPage - 3) {
         pageNumbers.push(i)
       }
     }
@@ -67,6 +68,7 @@ function App() {
     // setTotalPages(nbPages - 1)
   }
 
+  // FAVORITES CARDS AND ALL CARDS
   const handleFaves = (item) => {
     const arrayAuxPosts = posts
     const arrayAuxFaves = faves
@@ -93,6 +95,7 @@ function App() {
     }
   }
 
+  // SELECT ANGULAR REACT VUE
   const handleFramework = (item) => {
     localStorage.setItem('framework', JSON.stringify(item))
     setFramework(item)
@@ -117,12 +120,12 @@ function App() {
           ) : (
             <>
               <SelectFramework framework={framework} handleFramework={handleFramework} />
-              <ContentList currentPosts={currentPosts} handleFaves={handleFaves}/>
+              <ContentList currentPosts={currentPosts} handleFaves={handleFaves} />
             </>
           )
         }
       </div>
-
+      
       <Footer nbPages={nbPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   );

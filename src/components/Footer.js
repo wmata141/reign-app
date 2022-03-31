@@ -21,7 +21,6 @@ const Footer = ({ nbPages, currentPage, setCurrentPage }) => {
             </a> */}
       </ul>
     </nav>
-
   )
 }
 

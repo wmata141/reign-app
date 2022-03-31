@@ -2,6 +2,7 @@ import AngularImg from '../assets/images/image-138.png'
 import ReactImg from '../assets/images/image-140.png'
 import VueImg from '../assets/images/image-141.png'
 
+// DATA SELECT FROM FRAMEWORK 
 const frameworkList = [
     { img: AngularImg, name: 'angular' },
     { img: ReactImg, name: 'react' },
@@ -9,7 +10,6 @@ const frameworkList = [
 ]
 
 const SelectFramework = ({ framework, handleFramework }) => {
-
     return (
         <div className="Rectangle-26-Copy-23 dropdown">
             <button className="dropbtn">

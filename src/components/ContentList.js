@@ -3,6 +3,7 @@ import Timer from '../assets/images/timer.svg'
 import CorazonVacio from '../assets/images/corazonVacio.svg'
 import CorazonLleno from '../assets/images/corazonLleno.svg'
 
+// OPEN THE WEB PAGE FROM THE API URL
 const clickOpen = (url) => {
   window.open(url);
 }
