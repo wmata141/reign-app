@@ -4,22 +4,31 @@ import SelectFramework from './components/SelectFramework'
 import ContentList from './components/ContentList'
 import Footer from './components/Footer'
 
+interface Post {
+  author: string;
+  created_at: string;
+  objectID: string;
+  story_title: string;
+  faves: boolean;
+}
+
 function App() {
   const [framework, setFramework] = useState({ img: null, name: 'Select your News:' });
-  const [posts, setPosts] = useState([]);
-  const [faves, setFaves] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [listHandle, setListHandle] = useState(true);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [faves, setFaves] = useState<Post[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [listHandle, setListHandle] = useState<boolean>(true);
+  const [currentPage, setCurrentPage] = useState<number>(0);
   // const [totalPages, setTotalPages] = useState(0);
-  const [nbPages, setNbPages] = useState([])
+  const [nbPages, setNbPages] = useState<number[]>([])
 
   useEffect(() => {
     // GET INFORMATION FROM THE API     
     const fetchPost = async () => {
-      const frameworkJson = JSON.parse(localStorage.getItem('framework'))
+      const frameworkJson = JSON.parse(localStorage.getItem('framework') || '{}')
+      
       let data
-      if (frameworkJson) {
+      if (Object.keys(frameworkJson).length > 0) {
         data = await fetch(`https://hn.algolia.com/api/v1/search_by_date?query=${frameworkJson.name}&page=${currentPage}`)
       } else {
         data = await fetch(`https://hn.algolia.com/api/v1/search_by_date?query=${framework.name}&page=${currentPage}`)
@@ -27,7 +36,7 @@ function App() {
 
       const { hits, nbPages } = await data.json()
 
-      const pageNumbers = []
+      const pageNumbers: number[] = [];
       let initPage = 0
       if (currentPage - 3 <= 0) {
         initPage = 0
@@ -42,13 +51,13 @@ function App() {
       }
       setNbPages(pageNumbers)
 
-      const allJson = JSON.parse(localStorage.getItem(`all ${framework.name}`))
+      const allJson = JSON.parse(localStorage.getItem(`all ${framework.name}`) || '{}')
 
-      if (allJson) {
+      if (Object.keys(allJson).length > 0) {        
         setPosts(allJson)
       } else {
-        const arrayAll = []
-
+        const arrayAll: any[] = []
+        
         hits.forEach(element => {
           const result = faves.find(item => item.objectID === element.objectID);
 
@@ -70,11 +79,11 @@ function App() {
   }, [framework, faves, currentPage])
 
   useEffect(() => {
-    const frameworkJson = JSON.parse(localStorage.getItem('framework'))
-    if (frameworkJson) setFramework(frameworkJson)
+    const frameworkJson = JSON.parse(localStorage.getItem('framework') || '{}')
+    if (Object.keys(frameworkJson).length > 0) setFramework(frameworkJson)
 
-    const favesJson = JSON.parse(localStorage.getItem(`faves ${framework.name}`))
-    if (favesJson) {
+    const favesJson = JSON.parse(localStorage.getItem(`faves ${framework.name}`) || '{}')
+    if (Object.keys(favesJson).length > 0) {
       setFaves(favesJson)
     } else {
       setFaves([])
@@ -110,7 +119,8 @@ function App() {
           element.faves = true
         }
       });
-      localStorage.setItem(`all ${framework.name}`, JSON.stringify(arrayAuxPosts))
+      localStorage.setItem(`all ${framework.name}`, JSON.stringify(arrayAuxPosts))      
+      
       setPosts(arrayAuxPosts)
 
       item.faves = true
@@ -128,8 +138,8 @@ function App() {
     localStorage.setItem('framework', JSON.stringify(item))
     setFramework(item)
 
-    const favesJson = JSON.parse(localStorage.getItem(`faves ${item.name}`))
-    if (favesJson) {
+    const favesJson = JSON.parse(localStorage.getItem(`faves ${item.name}`) || '{}')
+    if (Object.keys(favesJson).length > 0) {
       setFaves(favesJson)
     } else {
       setFaves([])
@@ -138,8 +148,8 @@ function App() {
 
   const setListHandleFunction = (flag) => {
     setListHandle(flag)
-    const favesJson = JSON.parse(localStorage.getItem(`faves ${framework.name}`))
-    if (favesJson) {
+    const favesJson = JSON.parse(localStorage.getItem(`faves ${framework.name}`) || '{}')
+    if (Object.keys(favesJson).length > 0) {
       setFaves(favesJson)
     } else {
       setFaves([])

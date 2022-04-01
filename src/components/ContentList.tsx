@@ -1,3 +1,4 @@
+import React from 'react'
 import moment from 'moment'
 import Timer from '../assets/images/timer.svg'
 import CorazonVacio from '../assets/images/corazonVacio.svg'
@@ -9,17 +10,18 @@ const clickOpen = (url) => {
 }
 
 const ContentList = ({ currentPosts, handleFaves }) => {
-  const now = moment();
-
+  const now = moment();  
+  
   return (
     <div className="Reactangle-Card-Content">
       {
         currentPosts.map((post, i) => {
-          const duration = moment.duration(now.diff(post.created_at));
-          let agoByAuthor = `${duration._data.hours} hours ago by ${post.author}`
+          const duration = moment.duration(now.diff(post.created_at));          
 
-          if (duration._data.hours < 1) {
-            agoByAuthor = `${duration._data.minutes} minutes ago by  ${post.author}`
+          let agoByAuthor = `${duration['_data'].hours} hours ago by ${post.author}`
+
+          if (duration['_data'].hours < 1) {
+            agoByAuthor = `${duration['_data'].minutes} minutes ago by  ${post.author}`
           }
 
           return (
@@ -47,7 +49,8 @@ const ContentList = ({ currentPosts, handleFaves }) => {
               </div>
             </div>
           )
-        })}
+        })
+      }
     </div>
   )
 }

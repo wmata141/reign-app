@@ -1,15 +1,21 @@
+import React from 'react'
 import AngularImg from '../assets/images/image-138.png'
 import ReactImg from '../assets/images/image-140.png'
 import VueImg from '../assets/images/image-141.png'
 
+interface Framework {
+    img: string;
+    name: string;
+}
+
 // DATA SELECT FROM FRAMEWORK 
-const frameworkList = [
+const frameworkList : Framework[] = [
     { img: AngularImg, name: 'angular' },
     { img: ReactImg, name: 'react' },
     { img: VueImg, name: 'vue' }
 ]
 
-const SelectFramework = ({ framework, handleFramework }) => {
+const SelectFramework = ({ framework, handleFramework }) => {   
     return (
         <div className="Rectangle-26-Copy-23 dropdown">
             <button className="dropbtn">

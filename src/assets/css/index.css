@@ -237,12 +237,3 @@ img.iconmonstr-favorite-3 {
   object-fit: contain;
 }
 
-.footer {
-  display: flex;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  justify-content: center;
-  background-color: white;
-}
-

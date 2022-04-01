@@ -1,7 +1,17 @@
-.pagination a {
+.footer {
+  display: flex;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  justify-content: center;
+  background-color: white;
+}
+
+.pagination span {
     padding: 8px 16px;
     text-decoration: none;
     transition: background-color .3s;
+    cursor: pointer;
 }
 
 .Rectangle-3-Copy-33-active {

@@ -1,3 +1,5 @@
+import React from 'react'
+
 const Footer = ({ nbPages, currentPage, setCurrentPage }) => {
   return (
     <nav className="footer">
@@ -9,9 +11,9 @@ const Footer = ({ nbPages, currentPage, setCurrentPage }) => {
               {'<'}
             </a> */}
         {nbPages.map(number => (
-          <a key={number} onClick={() => setCurrentPage(number)} href="!#" className={number === currentPage ? "Rectangle-3-Copy-33-active" : "Rectangle-3-Copy-33"}>
+          <span key={number} onClick={() => setCurrentPage(number)} className={number === currentPage ? "Rectangle-3-Copy-33-active" : "Rectangle-3-Copy-33"}>
             {number}
-          </a>
+          </span>
         ))}
         {/* <a onClick={() => setCurrentPage(currentPage + 1)} href="!#" className="Rectangle-3-Copy-33">
               {'>'}
